@@ -6,20 +6,51 @@ fun main() {
 }
 
 /**
- * Submarine commands for day02
+ * Submarine commands for day02_01
  */
-class Submarine(){
+class SubmarineTask1(){
     var horizontal: Int = 0
     var depth: Int = 0
+
     fun forward(amount: Int = 1){
         this.horizontal += amount
     }
-
     fun down(amount: Int = 1){
         this.depth += amount
     }
     fun up(amount: Int = 1){
         this.depth -= amount
+    }
+    fun executeMovement(command: String){
+        val split_command = command.split(" ")
+        val direction: String = split_command[0]
+        val distance: Int = split_command[1].toInt()
+        when (direction) {
+            "forward" -> this.forward(distance)
+            "down" -> this.down(distance)
+            "up" -> this.up(distance)
+            else -> throw Exception("Incorrect movement detected")
+        }
+    }
+}
+
+/**
+ * Submarine commands for day02
+ */
+class SubmarineTask2(){
+    var horizontal: Int = 0
+    var aim: Int = 0
+    var depth: Int = 0
+
+    fun forward(amount: Int = 1){
+        this.horizontal += amount
+        this.depth += aim * amount
+    }
+    fun down(amount: Int = 1){
+        this.aim += amount
+    }
+    fun up(amount: Int = 1){
+        this.aim -= amount
     }
     fun executeMovement(command: String){
         val split_command = command.split(" ")
@@ -53,11 +84,21 @@ fun day01() {
  * Functions implemented for day02
  */
 fun day02() {
-    var sub = Submarine()
+    //task 01
+    val sub01 = SubmarineTask1()
     val input = readInput("./data/Day02_01")
     for (command in input){
-        sub.executeMovement(command)
+        sub01.executeMovement(command)
     }
-    val movement = sub.depth * sub.horizontal
-    println("Distance depth and forward: $movement")
+    val endpoint1 = sub01.depth * sub01.horizontal
+    println("Distance depth and forward: $endpoint1")
+    //task 02
+    val sub02 = SubmarineTask2()
+    val input02 = readInput("./data/Day02_02")
+    for (command in input){
+        sub02.executeMovement(command)
+    }
+    val endpoint2 = sub02.depth * sub02.horizontal
+    println("Distance depth and forward corrected: $endpoint2")
+
 }
