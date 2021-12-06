@@ -28,6 +28,23 @@ fun countDepthIncreases(depths: List<Int>): Int {
     return depthIncrease
 }
 
+fun countAddedIncreases(depths: List<Int>): Int{
+    val depthLength: Int = depths.size
+    var depthIncrease: Int = 0
+    var previousAverage: Int = depths[0] + depths[1] + depths[2]
+    var currentAverage: Int = 0
+    var i = 2
+    while (i < depthLength-1){
+        currentAverage = depths[i-1] + depths[i] + depths[i+1]
+        if (previousAverage < currentAverage){
+            depthIncrease += 1
+        }
+        previousAverage = currentAverage
+        i += 1
+    }
+    return depthIncrease
+}
+
 /**
  * Converts string to md5 hash.
  */
