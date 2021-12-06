@@ -13,7 +13,7 @@ fun readInput(name: String) = File("src", "$name.txt").readLines()
 fun readInputToInt(name: String) = File("src", "$name.txt").readLines().map{ it.toInt()}
 
 /**
- *
+ * Count the amount of times the depth increased
  */
 fun countDepthIncreases(depths: List<Int>): Int {
     val depthLength: Int = depths.size
@@ -28,6 +28,9 @@ fun countDepthIncreases(depths: List<Int>): Int {
     return depthIncrease
 }
 
+/**
+ * Count the amount of times the depth increased from a rolling sum
+ */
 fun countAddedIncreases(depths: List<Int>): Int{
     val depthLength: Int = depths.size
     var depthIncrease: Int = 0
@@ -44,6 +47,8 @@ fun countAddedIncreases(depths: List<Int>): Int{
     }
     return depthIncrease
 }
+
+
 
 /**
  * Converts string to md5 hash.
