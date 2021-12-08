@@ -5,8 +5,9 @@ fun main() {
 //    day04()
 //    day05Task01()
 //    day05Task02()
-    day06Task01()
-    day06Task02(256)
+//    day06Task01()
+//    day06Task02(256)
+    day07Task02()
 }
 
 
